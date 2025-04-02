@@ -1,22 +1,32 @@
+/**
+ * @brief Implements queue module
+ * @author Izan Robles
+ */
+
 #ifndef QUEUE_H
 #define	QUEUE_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "types.h"
 
 /** 
- * @brief Data type to declare a queue variable. 
+ * @brief Data type to declare a queue variable.
+ * @author Izan Robles 
  *
  **/
 typedef struct _Queue Queue;
 
 /**
  * @brief Data type for a pointer to a function that prints a queue element. 
+ * @author Izan Robles
+ * 
  **/
 typedef int (*p_queue_ele_print)(FILE *, const void *);
 
 /**
  * @brief This function creates and initializes a queue. 
+ * @author Izan Robles
  *
  * @return A pointer to the queue if it could be created or NULL in case of error.
  *  */
@@ -25,6 +35,7 @@ Queue *queue_new();
 /**
  * @brief This function frees the memory used by the queue, but not the elements 
  * that it may contain.
+ * @author Izan Robles
  *
  * @param q A pointer to the queue to be freed.  
  *  */
@@ -32,6 +43,7 @@ void queue_free(Queue *q);
 
 /**
  * @brief Checks whether the queue is empty or not.
+ * @author Izan Robles
  *
  * @param q A pointer to the queue.
  *
@@ -43,6 +55,7 @@ Bool queue_isEmpty(const Queue *q);
  * @brief This function is used to insert an element at the back position of a 
  * queue. A reference to the element is added to the queue container and the size 
  * is increased by 1. Time complexity: O(1).
+ * @author Izan Robles
  * 
  * @param q A pointer to the queue.
  * @param ele A pointer to the element to be inserted.
@@ -55,6 +68,7 @@ Status queue_push(Queue *q, void *ele);
  * @brief This function is used to extract an element from the front position of 
  * a queue. A reference to the element is returned and the size is decreased by 1. 
  * Time complexity: O(1).
+ * @author Izan Robles
  *
  * @param s q pointer to the queue.
  *
@@ -65,6 +79,7 @@ void *queue_pop(Queue *q);
 /**
  * @brief This function is used to get a reference to the element in the front 
  * position of a queue. 
+ * @author Izan Robles
  *
  * @param q A pointer to the queue.
  *
@@ -75,6 +90,7 @@ void *queue_getFront(const Queue *q);
 /**
  * @brief This function is used to get a reference to the element in the back 
  * position of a queue. 
+ * @author Izan Robles
  *
  * @param q A pointer to the queue.
  *
@@ -85,6 +101,7 @@ void *queue_getBack(const Queue *q);
 /**
  * @brief This function returns the size of a queue. Note that the function returns
  * 0 if it is called with a NULL pointer. Time complexity: O(1).
+ * @author Izan Robles
  *
  * @param q A pointer to the queue.
  *
@@ -94,6 +111,7 @@ size_t queue_size(const Queue *q);
 
 /**
  * @brief  This function prints the queue content to an output stream.
+ * @author Izan Robles
  * 
  * @param fp A pointer to the stream.
  * @param q A pointer to the queue to be printed. 

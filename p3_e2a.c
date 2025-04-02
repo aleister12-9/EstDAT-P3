@@ -1,9 +1,11 @@
 /**
- * @brief Example program to test functions using given queue library
+ * @brief Example program to test functions using new queue library
  * @author Izan Robles
  */
 
 #include "delivery.h"
+#include "queue.h"
+
 
 Delivery *build_delivery(FILE *pf)
 {
