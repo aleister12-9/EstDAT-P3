@@ -1,7 +1,8 @@
 /**
  * @file list.h
  * @author Programming II Teaching Team
- * @date 6 April 2020
+ * @author Izan Robles
+ * @date 3 April 2025
  * @brief Public interface for a Linked List implementation.
  *
  * The List admits arbitrary elements, received as pointers to void. It is
@@ -24,7 +25,10 @@
 #ifndef LIST_H
 #define	LIST_H
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "types.h"
+
 
 /**
  * List type definition: a list of arbitrary elements.
@@ -44,12 +48,15 @@ typedef int (*P_ele_print)(FILE *, const void *);
  * respectively, to be less than, to match, or  be greater than s2.
  */
 typedef int (*P_ele_cmp)(const void *, const void *);
+/**
+ * P_ele_free type definition: pointer to a function that frees a determined TAD
+ */
+typedef int (*P_ele_free)(const void *);
 
 
 /**
  * @brief Public function that creates a new List.
- *
- * Allocates memory for the new List.
+ * @author Izan Robles
  * 
  * @return Returns the address of the new list, or NULL in case of error.
  */
@@ -57,9 +64,8 @@ List *list_new();
 
 /**
  * @brief Public function that checks if a List is empty.
- *
- * Note that the return value is TRUE for a NULL List.
- *
+ * @author Izan Robles
+ * 
  * @param pl Pointer to the List.
  *
  * @return Bool value TRUE if the list is empty or NULL, Bool value FALSE
@@ -70,9 +76,9 @@ Bool list_isEmpty(const List *pl);
 /**
  * @brief Public function that pushes an element into the front position of a
  * List.
- *
- * Inserts into the front position a reference of the element received as argument.
- *
+ * 
+ * @author Izan Robles
+ * 
  * @param pl Pointer to the List.
  * @param e Pointer to the element to be inserted into the List.
  *
@@ -85,10 +91,7 @@ Status list_pushFront(List *pl, void *e);
  * @brief Public function that pushes an element into the back position of a
  * List.
  *
- * Inserts into the back position a reference of the element received as argument.
- *
- * Note that it is necessary to traverse the list in order to obtain the
- * insert position, so this operation is linear in the number of List elements.
+ * @author Izan Robles
  *
  * @param pl Pointer to the List.
  * @param e Pointer to the element to be inserted into the List.
@@ -100,11 +103,8 @@ Status list_pushBack(List *pl, void *e);
 
 /**
  * @brief Public function that pushes an element into an ordered list.
- *
- * Inserts in its position a reference of the element received as argument.
- *
- * Note that it is necessary to traverse the list in order to obtain the
- * insert position, so this operation is linear in the number of List elements.
+ * 
+ * @author Izan Robles
  *
  * @param pl Pointer to the List.
  * @param e Pointer to the element to be inserted into the List.
@@ -121,7 +121,7 @@ Status list_pushInOrder (List *pl, void *e, P_ele_cmp f, int order);
 /**
  * @brief Public function that pops the front element from a List.
  *
- * Extracts the front element from the List, returning a pointer to it.
+ * @author Izan Robles
  *
  * @param pl Pointer to the List.
  *
@@ -131,11 +131,8 @@ void *list_popFront(List *pl);
 
 /**
  * @brief Public function that pops the back element from a List.
- *
- * Extracts the element element from the List, returning a pointer to it.
- *
- * Note that it is necessary to traverse the list in order to obtain the
- * extract position, so this operation is linear in the number of List elements.
+ * 
+ * @author Izan Robles
  *
  * @param pl Pointer to the List.
  *
@@ -145,19 +142,26 @@ void *list_popBack(List *pl);
 
 /**
  * @brief Public function that frees a List.
- *
- * Frees all the memory allocated for the List.
+ * 
+ * @author Izan Robles
  *
  * @param pl Pointer to the List.
  */
 void list_free(List *pl);
 
 /**
+ * @brief Public function that frees a list and all its elements.
+ * 
+ * @author Izan Robles
+ *
+ * @param pl Pointer to the List.
+ */
+void list_free_with_elements(List *pl, P_ele_free f);
+
+/**
  * @brief Public function that returns the number of elements in a List.
  *
- * Note that the number of elements is not stored in the data structure, and the
- * List must be traversed in order to obtain its size. So this operation is linear
- * in the number of List elements.
+ * @author Izan Robles
  *
  * @param pl Pointer to the List.
  *
@@ -168,12 +172,7 @@ size_t list_size(const List *pl);
 /**
  * @brief Public function that prints the content of a List.
  *
- * Prints all the elements in the List, from front to rear, to an output stream.
- *
- * Note that this function simply calls the P_ele_print function for each List
- * element, also printing the size of this list at the beginning and an additional blank space 
- * between elements.
- * Any other desired format must be included in the P_ele_print function.
+ * @author Izan Robles
  *
  * @param fp Output stream.
  * @param pl Pointer to the List.
