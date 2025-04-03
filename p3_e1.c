@@ -100,6 +100,7 @@ int main(int argc, char *argv[])
     if (!(file = fopen(argv[1], "r")))
     {
         printf("ERROR: file not found\n");
+        return 1;
     }
     printf("--> target file found\n");
 
@@ -107,6 +108,7 @@ int main(int argc, char *argv[])
     {
         printf("ERROR: could not create delivery\n");
         fclose(file);
+        return 1;
     }
     printf("--> delivery created and filled\n");
     
@@ -116,6 +118,7 @@ int main(int argc, char *argv[])
         fclose(file);
         delivery_free_products(delivery, r);
         delivery_free(delivery);
+        return 1;
     }
     printf("--> delivery printed\n");
 
